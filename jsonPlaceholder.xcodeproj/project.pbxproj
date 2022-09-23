@@ -18,9 +18,6 @@
 		123AD4F128DC68120054BCC1 /* jsonPlaceholderUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4F028DC68120054BCC1 /* jsonPlaceholderUITestsLaunchTests.swift */; };
 		12DCEFC228DC6FF800FB93FA /* RxViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFAE28DC6FF800FB93FA /* RxViewController.swift */; };
 		12DCEFC628DC6FF800FB93FA /* RxBaseCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFB228DC6FF800FB93FA /* RxBaseCoordinator.swift */; };
-		12DCEFCA28DC6FF800FB93FA /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFB828DC6FF800FB93FA /* NSObject+Extensions.swift */; };
-		12DCEFCC28DC6FF800FB93FA /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFBB28DC6FF800FB93FA /* Presentable.swift */; };
-		12DCEFCE28DC6FF800FB93FA /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFBE28DC6FF800FB93FA /* CoordinatorFactory.swift */; };
 		12DCEFCF28DC6FF800FB93FA /* RouterImp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFC028DC6FF800FB93FA /* RouterImp.swift */; };
 		12DCEFD028DC6FF800FB93FA /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFC128DC6FF800FB93FA /* Router.swift */; };
 		12DCEFDF28DC705200FB93FA /* RxCapable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFD528DC705200FB93FA /* RxCapable.swift */; };
@@ -47,6 +44,10 @@
 		12DCF13128DC96B300FB93FA /* BundleExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13028DC96B300FB93FA /* BundleExtension.swift */; };
 		12DCF13428DC96EE00FB93FA /* AppConfiguration.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13228DC96EE00FB93FA /* AppConfiguration.swift */; };
 		12DCF13528DC96EE00FB93FA /* APIError.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13328DC96EE00FB93FA /* APIError.swift */; };
+		12DCF13828DCA4F100FB93FA /* CoordinatorFactory.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13628DCA4F100FB93FA /* CoordinatorFactory.swift */; };
+		12DCF13928DCA4F100FB93FA /* ApplicationCoordinator.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13728DCA4F100FB93FA /* ApplicationCoordinator.swift */; };
+		12DCF13B28DCA68700FB93FA /* Presentable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13A28DCA68600FB93FA /* Presentable.swift */; };
+		12DCF13D28DCA73B00FB93FA /* NSObject+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF13C28DCA73B00FB93FA /* NSObject+Extensions.swift */; };
 		2E17C16BE9EDAFA8982B6EE2 /* Pods_JSONPlaceholderProjects_jsonPlaceholder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7A79012F32D9E7EFABD38E16 /* Pods_JSONPlaceholderProjects_jsonPlaceholder.framework */; };
 		CEDBC1307F49EC758922711C /* Pods_JSONPlaceholderProjects_jsonPlaceholderTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EE28EB4A9789F2EED5EBA39A /* Pods_JSONPlaceholderProjects_jsonPlaceholderTests.framework */; };
 /* End PBXBuildFile section */
@@ -84,9 +85,6 @@
 		123AD4F028DC68120054BCC1 /* jsonPlaceholderUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = jsonPlaceholderUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		12DCEFAE28DC6FF800FB93FA /* RxViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxViewController.swift; sourceTree = "<group>"; };
 		12DCEFB228DC6FF800FB93FA /* RxBaseCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxBaseCoordinator.swift; sourceTree = "<group>"; };
-		12DCEFB828DC6FF800FB93FA /* NSObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
-		12DCEFBB28DC6FF800FB93FA /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
-		12DCEFBE28DC6FF800FB93FA /* CoordinatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
 		12DCEFC028DC6FF800FB93FA /* RouterImp.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RouterImp.swift; sourceTree = "<group>"; };
 		12DCEFC128DC6FF800FB93FA /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		12DCEFD528DC705200FB93FA /* RxCapable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCapable.swift; sourceTree = "<group>"; };
@@ -113,6 +111,10 @@
 		12DCF13028DC96B300FB93FA /* BundleExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BundleExtension.swift; sourceTree = "<group>"; };
 		12DCF13228DC96EE00FB93FA /* AppConfiguration.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AppConfiguration.swift; sourceTree = "<group>"; };
 		12DCF13328DC96EE00FB93FA /* APIError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = APIError.swift; sourceTree = "<group>"; };
+		12DCF13628DCA4F100FB93FA /* CoordinatorFactory.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = CoordinatorFactory.swift; sourceTree = "<group>"; };
+		12DCF13728DCA4F100FB93FA /* ApplicationCoordinator.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApplicationCoordinator.swift; sourceTree = "<group>"; };
+		12DCF13A28DCA68600FB93FA /* Presentable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Presentable.swift; sourceTree = "<group>"; };
+		12DCF13C28DCA73B00FB93FA /* NSObject+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "NSObject+Extensions.swift"; sourceTree = "<group>"; };
 		5786FBCDE7E16041C62C4258 /* Pods-JSONPlaceholderProjects-jsonPlaceholderTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONPlaceholderProjects-jsonPlaceholderTests.debug.xcconfig"; path = "Target Support Files/Pods-JSONPlaceholderProjects-jsonPlaceholderTests/Pods-JSONPlaceholderProjects-jsonPlaceholderTests.debug.xcconfig"; sourceTree = "<group>"; };
 		633FB8460061F9EB3B7D32FE /* Pods-JSONPlaceholderProjects-jsonPlaceholder.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JSONPlaceholderProjects-jsonPlaceholder.debug.xcconfig"; path = "Target Support Files/Pods-JSONPlaceholderProjects-jsonPlaceholder/Pods-JSONPlaceholderProjects-jsonPlaceholder.debug.xcconfig"; sourceTree = "<group>"; };
 		7A79012F32D9E7EFABD38E16 /* Pods_JSONPlaceholderProjects_jsonPlaceholder.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JSONPlaceholderProjects_jsonPlaceholder.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -212,10 +214,9 @@
 		12DCEFAC28DC6FF800FB93FA /* Coordinators */ = {
 			isa = PBXGroup;
 			children = (
+				12DCF13728DCA4F100FB93FA /* ApplicationCoordinator.swift */,
+				12DCF13628DCA4F100FB93FA /* CoordinatorFactory.swift */,
 				12DCEFAD28DC6FF800FB93FA /* Parents */,
-				12DCEFB728DC6FF800FB93FA /* Extensions */,
-				12DCEFB928DC6FF800FB93FA /* Protocols */,
-				12DCEFBD28DC6FF800FB93FA /* Factory */,
 				12DCEFBF28DC6FF800FB93FA /* Router */,
 			);
 			path = Coordinators;
@@ -230,30 +231,6 @@
 			path = Parents;
 			sourceTree = "<group>";
 		};
-		12DCEFB728DC6FF800FB93FA /* Extensions */ = {
-			isa = PBXGroup;
-			children = (
-				12DCEFB828DC6FF800FB93FA /* NSObject+Extensions.swift */,
-			);
-			path = Extensions;
-			sourceTree = "<group>";
-		};
-		12DCEFB928DC6FF800FB93FA /* Protocols */ = {
-			isa = PBXGroup;
-			children = (
-				12DCEFBB28DC6FF800FB93FA /* Presentable.swift */,
-			);
-			path = Protocols;
-			sourceTree = "<group>";
-		};
-		12DCEFBD28DC6FF800FB93FA /* Factory */ = {
-			isa = PBXGroup;
-			children = (
-				12DCEFBE28DC6FF800FB93FA /* CoordinatorFactory.swift */,
-			);
-			path = Factory;
-			sourceTree = "<group>";
-		};
 		12DCEFBF28DC6FF800FB93FA /* Router */ = {
 			isa = PBXGroup;
 			children = (
@@ -266,6 +243,7 @@
 		12DCEFD128DC705200FB93FA /* Protocols */ = {
 			isa = PBXGroup;
 			children = (
+				12DCF13A28DCA68600FB93FA /* Presentable.swift */,
 				12DCEFD528DC705200FB93FA /* RxCapable.swift */,
 				12DCEFDA28DC705200FB93FA /* Loadable.swift */,
 			);
@@ -275,6 +253,7 @@
 		12DCEFE628DC712700FB93FA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				12DCF13C28DCA73B00FB93FA /* NSObject+Extensions.swift */,
 				12DCF13028DC96B300FB93FA /* BundleExtension.swift */,
 				12DCF0F528DC8A2000FB93FA /* UIColor+Extensions.swift */,
 				12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */,
@@ -622,17 +601,19 @@
 				12DCF11828DC960500FB93FA /* AppAssembly.swift in Sources */,
 				12DCF13128DC96B300FB93FA /* BundleExtension.swift in Sources */,
 				12DCF11728DC960500FB93FA /* AppComponent.swift in Sources */,
-				12DCEFCA28DC6FF800FB93FA /* NSObject+Extensions.swift in Sources */,
 				12DCF12928DC966300FB93FA /* RestManager.swift in Sources */,
 				12DCF0B028DC73FC00FB93FA /* UIWindowExtension.swift in Sources */,
 				123AD4CE28DC680F0054BCC1 /* AppDelegate.swift in Sources */,
 				12DCF12828DC966300FB93FA /* RestRequest.swift in Sources */,
+				12DCF13D28DCA73B00FB93FA /* NSObject+Extensions.swift in Sources */,
 				12DCF0F228DC88C600FB93FA /* NavigationController.swift in Sources */,
 				12DCEFDF28DC705200FB93FA /* RxCapable.swift in Sources */,
+				12DCF13928DCA4F100FB93FA /* ApplicationCoordinator.swift in Sources */,
 				12DCEFC628DC6FF800FB93FA /* RxBaseCoordinator.swift in Sources */,
 				12DCEFE428DC705200FB93FA /* Loadable.swift in Sources */,
 				12DCF0F028DC879B00FB93FA /* LoaderTimeOutView.swift in Sources */,
 				12DCF0D628DC873C00FB93FA /* Animations.swift in Sources */,
+				12DCF13B28DCA68700FB93FA /* Presentable.swift in Sources */,
 				12DCF05028DC712700FB93FA /* UIViewController+Extensions.swift in Sources */,
 				12DCF0EE28DC879B00FB93FA /* Loader.swift in Sources */,
 				12DCF11228DC923100FB93FA /* NibLoadingView.swift in Sources */,
@@ -644,8 +625,7 @@
 				12DCF0AE28DC72AD00FB93FA /* Logger.swift in Sources */,
 				12DCF0BB28DC782900FB93FA /* UIViewExtension.swift in Sources */,
 				123AD4D028DC680F0054BCC1 /* SceneDelegate.swift in Sources */,
-				12DCEFCC28DC6FF800FB93FA /* Presentable.swift in Sources */,
-				12DCEFCE28DC6FF800FB93FA /* CoordinatorFactory.swift in Sources */,
+				12DCF13828DCA4F100FB93FA /* CoordinatorFactory.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

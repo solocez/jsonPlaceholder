@@ -1,14 +1,6 @@
-//
-//  NSObjectExtensions.swift
-//  EmployerApp
-//
-//  Created by Leo Marcotte on 15/03/2018.
-//  Copyright © 2018 Leo Marcotte. All rights reserved.
-//
-
 import Foundation
 
-public extension NSObject {
+extension NSObject {
     var nameOfClass: String {
         NSStringFromClass(type(of: self)).components(separatedBy: ".").last ?? ""
     }
