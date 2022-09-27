@@ -25,7 +25,7 @@ class RestManager: RestAPI {
                         case .success(let value):
                             single(.success(value))
                         case .failure(let error):
-                            single(.failure(error))
+                            single(.failure(APIError(error: error)))
                         }
                     }
             } catch {

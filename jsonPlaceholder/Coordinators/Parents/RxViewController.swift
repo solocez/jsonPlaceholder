@@ -6,12 +6,16 @@ class RxViewController: UIViewController, RxCapable {
 
     override open func viewDidLoad() {
         super.viewDidLoad()
-
+        setupViews()
         setupRxBindings()
     }
 
-    func setupRxBindings() {
+    func setupViews() {
+        log.warning("Non Implemented!")
+    }
 
+    func setupRxBindings() {
+        log.warning("Non Implemented!")
     }
 }
 

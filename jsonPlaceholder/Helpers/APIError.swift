@@ -1,8 +1,7 @@
 import Alamofire
 import SwiftyJSON
 
-// keys of WS response payload
-private enum JsonKey {
+enum JsonKey {
     static let type = "type"
     static let code = "code"
     static let message = "message"
@@ -10,21 +9,25 @@ private enum JsonKey {
     static let content = "content"
 }
 
-public protocol APIErrorData {
+protocol APIErrorData {
     var code: Int { get }
     var message: String { get }
     var payload: [String: Any] { get }
     var traceId: Any? { get }
 }
 
-open class APIError: LocalizedError, CustomDebugStringConvertible {
+final class APIError: LocalizedError, CustomDebugStringConvertible {
 
-    public var code: Int = -1
-    public var message: String = ""
-    public var payload = [String: Any]()
+    var code: Int = -1
+    var message: String = ""
+    var payload = [String: Any]()
 
-    public var debugDescription: String {
+    var debugDescription: String {
         "\(JsonKey.type): \(JsonKey.code): \(code)\n\(JsonKey.message): \(message)"
+    }
+
+    init(error: Error) {
+        handleError(error)
     }
 
     init(with message: String) {
@@ -50,5 +53,21 @@ open class APIError: LocalizedError, CustomDebugStringConvertible {
         self.code = code
         self.message = message + (errorMessages.isEmpty ? "" : ("\n" + errorMessages.joined(separator: "; ")))
         self.payload = json.dictionaryValue
+    }
+}
+
+private extension APIError {
+    func handleError(_ error: Error) {
+        switch error {
+        case let error as AFError:
+            handleAFError(with: error)
+        default:
+            message = error.localizedDescription
+        }
+    }
+
+    func handleAFError(with afError: AFError) {
+        code = afError.responseCode ?? -1
+        message = afError.errorDescription ?? afError.localizedDescription
     }
 }

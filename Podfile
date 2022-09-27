@@ -11,7 +11,9 @@ def commonPods
   pod 'Alamofire'
   pod 'RxCocoa'
   pod 'RxSwift'
+  pod 'RxSwiftExt'
   pod 'lottie-ios'
+  pod 'FLEX'
   
   pod 'SwiftyBeaver'
   pod 'SwiftyJSON'

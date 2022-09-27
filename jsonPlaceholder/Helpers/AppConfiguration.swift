@@ -2,8 +2,8 @@ import Foundation
 
 enum Constants {
     enum Host {
-        static let prod = "https://randomuser.me/api/"
-        static let preprod = "https://randomuser.me/api/"
+        static let prod = "https://jsonplaceholder.typicode.com/"
+        static let preprod = "https://jsonplaceholder.typicode.com/"
     }
 }
 

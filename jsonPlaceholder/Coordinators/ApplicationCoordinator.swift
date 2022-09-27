@@ -1,6 +1,6 @@
 import RxSwift
 
-class ApplicationCoordinator: RxBaseCoordinator<Void> {
+final class ApplicationCoordinator: RxBaseCoordinator<Void> {
 
     var window: UIWindow
 
@@ -29,40 +29,12 @@ class ApplicationCoordinator: RxBaseCoordinator<Void> {
 
 private extension ApplicationCoordinator {
     func runMainFlow() {
-        // in order to release screens horizontal flows created before main flow we need to reset router
-        let router = ApplicationCoordinator.createRouterForHorizontalFlows()
-        resetCoordinator(newRouter: router)
-        
-//        tabbarCoordinator = TabbarFactory().makeTabbarCoordinator()
-//
-//        guard let coordinator = tabbarCoordinator else { return }
-//        coordinate(to: coordinator, with: deeplinkOption)
-//            .subscribe { result in
-//                log.debug("Main Flow has ended the flow with result: \(result)")
-//            } onFailure: { err in
-//                log.error(err)
-//            }
-//            .disposed(by: bag)
-//
-//        coordinator.logoutAction
-//            .subscribe({ [unowned self] event in
-//                switch event {
-//                case .next:
-//                    self.restart()
-//                default:
-//                    break
-//                }
-//            })
-//            .disposed(by: bag)
-
-        //window.rootViewController = coordinator.tabbarController.toPresent()
-        window.makeKeyAndVisible()
+        let firstScreen = ScreenFactory().createFirstScreen(viewModel: FirstScreenViewModel())
+        router.setRootModule(firstScreen)
     }
     
     static func createRouterForHorizontalFlows() -> Router {
         let navigationController = NavigationController()
-        let router = CoordinatorFactory().router(navigationController)
-        
-        return router
+        return CoordinatorFactory().router(navigationController)
     }
 }
