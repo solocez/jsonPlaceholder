@@ -6,6 +6,7 @@ protocol FirstScreenViewModelInterface: Loadable {
     var lowerBound: PublishRelay<Int> { get }
     var upperBound: PublishRelay<Int> { get }
     var onContinue: PublishSubject<Void> { get }
+    var onCancel: PublishSubject<Void> { get }
 
     // Out
     var maxComments: BehaviorRelay<Int> { get }
@@ -24,6 +25,7 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
     var lowerBound = PublishRelay<Int>()
     var upperBound = PublishRelay<Int>()
     var onContinue = PublishSubject<Void>()
+    var onCancel = PublishSubject<Void>()
 
     var maxComments = BehaviorRelay<Int>(value: Constants.maximumComments)
 
@@ -31,7 +33,8 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
 
     private var lower = -1
     private var upper = -1
-    private let bag = DisposeBag()
+    private var bag = DisposeBag()
+    private var bagForFetch = DisposeBag()
     @Inject private var api: RestAPI
 
     init() {
@@ -65,6 +68,13 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
             .map { Result<ViewModelResultType, APIError>.success($0) }
             .bind(to: modelResult)
             .disposed(by: bag)
+
+        onCancel
+            .asObservable()
+            .subscribe(onNext: { [unowned self] in
+                self.bagForFetch = DisposeBag()
+            })
+            .disposed(by: bag)
     }
 }
 
@@ -95,9 +105,8 @@ extension FirstScreenViewModel {
                 }, onError: { error in
                     single(.failure(error))
                 })
-                .disposed(by: self.bag)
+                .disposed(by: self.bagForFetch)
             return Disposables.create()
         }
-
     }
 }

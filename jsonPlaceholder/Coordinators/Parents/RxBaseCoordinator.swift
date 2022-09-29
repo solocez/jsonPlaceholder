@@ -60,19 +60,19 @@ open class RxBaseCoordinator<ResultType>: RxCapable {
     }
 }
 
-extension RxBaseCoordinator {
-    func showErrorAlert(_ error: Error) {
-        showErrorAlert(error.localizedDescription)
-    }
-
-    func showErrorAlert(_ message: String) {
-        // Prevent of showing empty alerts
-        guard !message.isEmpty else { return }
-        
-        let topController = UIApplication.topViewController()
-        
-        if let top = topController, top.isViewLoaded {
-            top.showAlert(title: "Error", message: message)
-        }
-    }
-}
+//extension RxBaseCoordinator {
+//    func showErrorAlert(_ error: Error) {
+//        showErrorAlert(error.localizedDescription)
+//    }
+//
+//    func showErrorAlert(_ message: String) {
+//        // Prevent of showing empty alerts
+//        guard !message.isEmpty else { return }
+//        
+//        let topController = UIApplication.topViewController()
+//        
+//        if let top = topController, top.isViewLoaded {
+//            top.showAlert(title: "Error", message: message)
+//        }
+//    }
+//}

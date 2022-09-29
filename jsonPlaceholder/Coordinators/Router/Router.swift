@@ -12,9 +12,6 @@ protocol Router: Presentable {
 
     func popModule()
     func popModule(animated: Bool)
-    // Pops only controllers from stack
-    func removeModule(by screensAmount: Int, animated: Bool)
-    func removeModule(to screenIdentifier: String, animated: Bool)
 
     func dismissModule()
     func dismissModule(animated: Bool, completion: (() -> Void)?)

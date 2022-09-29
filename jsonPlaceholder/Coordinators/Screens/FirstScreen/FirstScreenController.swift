@@ -44,7 +44,9 @@ final class FirstScreenController: RxViewController, KeyboardDismissableOnTap {
     }
 
     override func setupRxBindings() {
-        bindLoader(loadable: viewModel)
+        bindLoader(loadable: viewModel, onCancelled: { [unowned self] in
+            self.viewModel.onCancel.onNext(Void())
+        })
         bindBounds()
         bindContinueBtn()
     }

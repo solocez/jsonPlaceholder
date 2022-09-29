@@ -60,44 +60,6 @@ class RouterImp: Router {
             runCompletion(for: controller)
         }
     }
-    
-    func removeModule(by screensAmount: Int, animated: Bool) {
-        guard let rootController = self.rootController,
-            let topController = UIApplication.topViewController(),
-            rootController.viewControllers.count > screensAmount,
-            !topController.isModal else {
-            return assertionFailure("ViewControllers are not enough for this operation or top controller is modal")
-        }
-        
-        var newStack = rootController.viewControllers
-        newStack.removeLast(screensAmount)
-        rootController.setViewControllers(newStack, animated: animated)
-    }
-    
-    func removeModule(to screenIdentifier: String, animated: Bool) {
-        guard let rootController = self.rootController,
-            let topController = UIApplication.topViewController(),
-            !topController.isModal else {
-            return assertionFailure("ViewControllers are not enough for this operation or top controller is modal")
-        }
-        
-        var newStack = rootController.viewControllers
-        var index: Int?
-        newStack.enumerated().forEach({ idx, controller in
-            if controller.identifier == screenIdentifier {
-                index = idx
-            }
-        })
-        
-        guard let idx = index else {
-            log.error("There is no \(screenIdentifier) controller to pop")
-            return
-        }
-        
-        let screensCount = (rootController.viewControllers.count - 1) - idx
-        newStack.removeLast(screensCount)
-        rootController.setViewControllers(newStack, animated: animated)
-    }
 
     func setRootModule(_ module: Presentable?) {
         guard let controller = module?.toPresent() else { return }

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		123A0ED428E5C2D300A506C4 /* SpinnerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A0ED328E5C2D300A506C4 /* SpinnerViewController.swift */; };
 		123AD4CE28DC680F0054BCC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4CD28DC680F0054BCC1 /* AppDelegate.swift */; };
 		123AD4D028DC680F0054BCC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4CF28DC680F0054BCC1 /* SceneDelegate.swift */; };
 		123AD4D228DC680F0054BCC1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4D128DC680F0054BCC1 /* ViewController.swift */; };
@@ -33,10 +34,8 @@
 		12DCEFD028DC6FF800FB93FA /* Router.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFC128DC6FF800FB93FA /* Router.swift */; };
 		12DCEFDF28DC705200FB93FA /* RxCapable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFD528DC705200FB93FA /* RxCapable.swift */; };
 		12DCEFE428DC705200FB93FA /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFDA28DC705200FB93FA /* Loadable.swift */; };
-		12DCF04A28DC712700FB93FA /* UIApplication+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFE728DC712700FB93FA /* UIApplication+Extension.swift */; };
 		12DCF05028DC712700FB93FA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFED28DC712700FB93FA /* UIViewController+Extensions.swift */; };
 		12DCF0AE28DC72AD00FB93FA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0AD28DC72AD00FB93FA /* Logger.swift */; };
-		12DCF0B028DC73FC00FB93FA /* UIWindowExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0AF28DC73FC00FB93FA /* UIWindowExtension.swift */; };
 		12DCF0BB28DC782900FB93FA /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */; };
 		12DCF0D628DC873C00FB93FA /* Animations.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0C228DC873C00FB93FA /* Animations.swift */; };
 		12DCF0ED28DC879B00FB93FA /* GhostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0E728DC879B00FB93FA /* GhostButton.swift */; };
@@ -81,6 +80,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		123A0ED328E5C2D300A506C4 /* SpinnerViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SpinnerViewController.swift; sourceTree = "<group>"; };
 		123AD4CA28DC680F0054BCC1 /* jsonPlaceholder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jsonPlaceholder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		123AD4CD28DC680F0054BCC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		123AD4CF28DC680F0054BCC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -111,10 +111,8 @@
 		12DCEFC128DC6FF800FB93FA /* Router.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Router.swift; sourceTree = "<group>"; };
 		12DCEFD528DC705200FB93FA /* RxCapable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = RxCapable.swift; sourceTree = "<group>"; };
 		12DCEFDA28DC705200FB93FA /* Loadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
-		12DCEFE728DC712700FB93FA /* UIApplication+Extension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIApplication+Extension.swift"; sourceTree = "<group>"; };
 		12DCEFED28DC712700FB93FA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		12DCF0AD28DC72AD00FB93FA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		12DCF0AF28DC73FC00FB93FA /* UIWindowExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIWindowExtension.swift; sourceTree = "<group>"; };
 		12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
 		12DCF0C228DC873C00FB93FA /* Animations.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Animations.swift; sourceTree = "<group>"; };
 		12DCF0E728DC879B00FB93FA /* GhostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostButton.swift; sourceTree = "<group>"; };
@@ -321,8 +319,6 @@
 				12DCF13028DC96B300FB93FA /* BundleExtension.swift */,
 				12DCF0F528DC8A2000FB93FA /* UIColor+Extensions.swift */,
 				12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */,
-				12DCF0AF28DC73FC00FB93FA /* UIWindowExtension.swift */,
-				12DCEFE728DC712700FB93FA /* UIApplication+Extension.swift */,
 				12DCEFED28DC712700FB93FA /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
@@ -360,6 +356,7 @@
 		12DCF0E628DC879B00FB93FA /* UIControls */ = {
 			isa = PBXGroup;
 			children = (
+				123A0ED328E5C2D300A506C4 /* SpinnerViewController.swift */,
 				12DCF11128DC923100FB93FA /* NibLoadingView.swift */,
 				12DCF0F128DC88C600FB93FA /* NavigationController.swift */,
 				12DCF0E728DC879B00FB93FA /* GhostButton.swift */,
@@ -659,12 +656,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123A0ED428E5C2D300A506C4 /* SpinnerViewController.swift in Sources */,
 				123AD4D228DC680F0054BCC1 /* ViewController.swift in Sources */,
 				12AF1EE828DF360600AB87C5 /* ScreenFactory.swift in Sources */,
 				12DCEFD028DC6FF800FB93FA /* Router.swift in Sources */,
 				12AF1EE628DF302B00AB87C5 /* FirstScreenController.swift in Sources */,
 				128290BC28E2DB40008DEA9A /* KeyboardDismissableOnTap.swift in Sources */,
-				12DCF04A28DC712700FB93FA /* UIApplication+Extension.swift in Sources */,
 				12DCF13528DC96EE00FB93FA /* APIError.swift in Sources */,
 				12DCF0F628DC8A2000FB93FA /* UIColor+Extensions.swift in Sources */,
 				128290C128E34801008DEA9A /* CommentFactory.swift in Sources */,
@@ -675,7 +672,6 @@
 				12DCF13128DC96B300FB93FA /* BundleExtension.swift in Sources */,
 				12DCF11728DC960500FB93FA /* AppComponent.swift in Sources */,
 				12DCF12928DC966300FB93FA /* RestManager.swift in Sources */,
-				12DCF0B028DC73FC00FB93FA /* UIWindowExtension.swift in Sources */,
 				123AD4CE28DC680F0054BCC1 /* AppDelegate.swift in Sources */,
 				12DCF12828DC966300FB93FA /* RestRequest.swift in Sources */,
 				12DCF13D28DCA73B00FB93FA /* NSObject+Extensions.swift in Sources */,

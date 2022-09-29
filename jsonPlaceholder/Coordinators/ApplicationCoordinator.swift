@@ -29,7 +29,21 @@ final class ApplicationCoordinator: RxBaseCoordinator<Void> {
 
 private extension ApplicationCoordinator {
     func runMainFlow() {
-        let firstScreen = ScreenFactory().createFirstScreen(viewModel: FirstScreenViewModel())
+        let vm = FirstScreenViewModel()
+        vm.modelResult
+            .asObservable()
+            .subscribe(onNext: { modelResult in
+                switch modelResult {
+                case .success(_):
+                    log.debug("")
+                case .failure(_):
+                    log.debug("")
+                }
+            }, onError: { error in
+                
+            })
+            .disposed(by: bag)
+        let firstScreen = ScreenFactory().createFirstScreen(viewModel: vm)
         router.setRootModule(firstScreen)
     }
     

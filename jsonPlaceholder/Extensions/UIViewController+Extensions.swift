@@ -20,69 +20,32 @@ extension UIViewController {
     }
 }
 
-extension UIViewController {
-    public func showAlert(title: String, message: String,
-                          actions: [UIAlertAction] = [], completion: (() -> Void)? = nil) {
-        let alertController = UIAlertController(
-            title: title,
-            message: message,
-            preferredStyle: .alert
-        )
-        if actions.isEmpty {
-            let okAction = UIAlertAction(title: "Ok", style: .default) { [weak alertController] _ in
-                alertController?.dismiss(animated: true)
-            }
-            alertController.addAction(okAction)
-        } else {
-            actions.forEach { alertController.addAction($0) }
-        }
-        present(alertController, animated: true, completion: completion)
-    }
+final class SpinnerTapRecognizer: UITapGestureRecognizer {
+    var onTapped: (()->Void)? = nil
 }
 
-class LoaderBuilder {
-    public static let shared = LoaderBuilder(animation: .loader)
-
-    private var animation: Animation
-    
-    init(animation: Animation) {
-        self.animation = animation
-    }
-    
-    public func setup(animation: Animation) {
-        self.animation = animation
-    }
-
-    func createLoader() -> Loader {
-        let loader = Loader(animation: animation)
-        return loader
-    }
-}
-
-// MARK: - Loader
 extension UIViewController {
-    var materialiseLoader: ((Bool) -> Loader) {
-        { _ in LoaderBuilder.shared.createLoader() }
+    func showLoader(onCancelled: @escaping () -> Void) {
+        let spinner = SpinnerViewController()
+        addChild(spinner)
+        spinner.view.frame = view.frame
+        view.addSubview(spinner.view)
+        spinner.didMove(toParent: self)
+
+        let tapRecognizer = SpinnerTapRecognizer(target: self, action: #selector(didTapView(_:)))
+        tapRecognizer.numberOfTapsRequired = 1
+        tapRecognizer.onTapped = onCancelled
+        spinner.view.addGestureRecognizer(tapRecognizer)
     }
 
-    public func showLoader(shouldTimeout: Bool = true) {
-        showLoader(loader: materialiseLoader(shouldTimeout))
+    @objc func didTapView(_ sender: SpinnerTapRecognizer) {
+        hideLoader()
+        sender.onTapped?()
     }
 
-    func showLoader(loader: Loader) {
-        if children.contains(where: { $0 is Loader }) {
-            return
-        }
-        add(loader)
-        UIView.animate(withDuration: 0.3) {
-            loader.view.alpha = 1
-            loader.animateAppearing()
-        }
-    }
-
-    public func hideLoader(completion: (() -> Void)? = nil) {
+    func hideLoader(completion: (() -> Void)? = nil) {
         children.forEach { viewController in
-            if viewController is Loader {
+            if viewController is SpinnerViewController {
                 UIView.animate(withDuration: 0.2, animations: {
                     viewController.view.alpha = 0
                 }, completion: { _ in
@@ -95,59 +58,10 @@ extension UIViewController {
 }
 
 extension UIViewController {
-    func add(_ childViewController: UIViewController, in subView: UIView? = nil, enablingConstraints: Bool = true) {
-        guard let containerView = subView ?? view else { return }
-
-        childViewController.willMove(toParent: self)
-        addChild(childViewController)
-        childViewController.view.frame = containerView.bounds
-        containerView.addSubview(childViewController.view)
-
-        if enablingConstraints {
-            childViewController.view.translatesAutoresizingMaskIntoConstraints = false
-            childViewController.view.leadingAnchor.constraint(equalTo: containerView.leadingAnchor).isActive = true
-            childViewController.view.trailingAnchor.constraint(equalTo: containerView.trailingAnchor).isActive = true
-            childViewController.view.topAnchor.constraint(equalTo: containerView.topAnchor).isActive = true
-            childViewController.view.bottomAnchor.constraint(equalTo: containerView.bottomAnchor).isActive = true
-        }
-
-        childViewController.didMove(toParent: self)
-
-        if enablingConstraints {
-            containerView.layoutIfNeeded()
-        }
-    }
-
     func removeChildViewController() {
-        self.willMove(toParent: nil)
-        self.viewWillDisappear(true)
-        self.removeFromParent()
-        self.view.removeFromSuperview()
-        self.view.layoutIfNeeded()
-    }
-}
-
-extension UIViewController {
-    var isModal: Bool {
-        let presentingIsModal = presentingViewController != nil
-        let presentingIsNavigation = navigationController?.presentingViewController?.presentedViewController == navigationController
-        let presentingIsTabBar = tabBarController?.presentingViewController is UITabBarController
-        return presentingIsModal || presentingIsNavigation || presentingIsTabBar
-    }
-    
-    var isVisible: Bool {
-        if isViewLoaded {
-            return view.window != nil
-        }
-        return false
-    }
-}
-
-public extension Reactive where Base: UIViewController {
-    var backgroundColor: Binder<UIColor?> {
-        Binder(self.base) { controller, color in
-            guard let color = color else { return }
-            controller.view.backgroundColor = color
-        }
+        willMove(toParent: nil)
+        removeFromParent()
+        view.removeFromSuperview()
+        view.layoutIfNeeded()
     }
 }

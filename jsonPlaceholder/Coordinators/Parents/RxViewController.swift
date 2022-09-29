@@ -20,11 +20,11 @@ class RxViewController: UIViewController, RxCapable {
 }
 
 extension RxViewController {
-    public func bindLoader(loadable: Loadable, shouldTimeout: Bool = true) {
+    public func bindLoader(loadable: Loadable, onCancelled: @escaping () -> Void) {
         loadable.isLoading
             .asDriver()
             .drive(onNext: { [weak self] isLoading in
-                isLoading ? self?.showLoader(shouldTimeout: shouldTimeout) : self?.hideLoader()
+                isLoading ? self?.showLoader(onCancelled: onCancelled) : self?.hideLoader()
             })
             .disposed(by: bag)
     }

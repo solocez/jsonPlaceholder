@@ -32,7 +32,9 @@ final class SecondScreenController: RxViewController {
     }
 
     override func setupRxBindings() {
-        bindLoader(loadable: viewModel)
+        bindLoader(loadable: viewModel, onCancelled: {
+            // TODO:
+        })
         bindBounds()
         bindContinueBtn()
     }
