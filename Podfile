@@ -12,8 +12,10 @@ def commonPods
   pod 'RxCocoa'
   pod 'RxSwift'
   pod 'RxSwiftExt'
-  pod 'lottie-ios'
   pod 'FLEX'
+
+  pod 'ReSwift'
+  pod 'ReSwiftThunk'
   
   pod 'SwiftyBeaver'
   pod 'SwiftyJSON'

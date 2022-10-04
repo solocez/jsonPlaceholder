@@ -1,6 +1,9 @@
-import Lottie
 import RxCocoa
 import RxSwift
+
+final class SpinnerTapRecognizer: UITapGestureRecognizer {
+    var onTapped: (()->Void)? = nil
+}
 
 extension UIViewController {
     /// Returns the name of a class
@@ -18,10 +21,6 @@ extension UIViewController {
     var identifier: String {
         type(of: self).identifier
     }
-}
-
-final class SpinnerTapRecognizer: UITapGestureRecognizer {
-    var onTapped: (()->Void)? = nil
 }
 
 extension UIViewController {

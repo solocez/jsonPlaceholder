@@ -13,12 +13,7 @@ protocol FirstScreenViewModelInterface: Loadable {
 }
 
 final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
-    typealias ViewModelResultType = [CommentEntity]
-
-    enum Constants {
-        static let maximumComments =  500
-        static let intervalToWaitBeforeResult = 3
-    }
+    typealias ViewModelResultType = (Int/*lower bound*/, Int/*upper bound*/, [CommentEntity])
 
     var modelResult = PublishRelay<Result<ViewModelResultType, APIError>>()
 
@@ -97,11 +92,11 @@ extension FirstScreenViewModel {
                 observables.append(idxObs)
             }
             Observable.combineLatest(observables)
-                .subscribe(onNext: { jsons in
+                .subscribe(onNext: { [unowned self] jsons in
                     let entities = jsons
                         .map { CommentFactory().dematerialiseComment(from: $0) }
                         .compactMap { $0 }
-                    single(.success(entities))
+                    single(.success((self.lower, self.upper, entities)))
                 }, onError: { error in
                     single(.failure(error))
                 })

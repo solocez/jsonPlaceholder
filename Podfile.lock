@@ -1,7 +1,12 @@
 PODS:
   - Alamofire (5.6.2)
   - FLEX (4.7.0)
-  - lottie-ios (3.4.3)
+  - ReSwift (6.1.0)
+  - ReSwiftThunk (2.0.1):
+    - ReSwift (~> 6.0)
+    - ReSwiftThunk/Core (= 2.0.1)
+  - ReSwiftThunk/Core (2.0.1):
+    - ReSwift (~> 6.0)
   - RxCocoa (6.5.0):
     - RxRelay (= 6.5.0)
     - RxSwift (= 6.5.0)
@@ -23,7 +28,8 @@ PODS:
 DEPENDENCIES:
   - Alamofire
   - FLEX
-  - lottie-ios
+  - ReSwift
+  - ReSwiftThunk
   - RxCocoa
   - RxSwift
   - RxSwiftExt
@@ -35,7 +41,8 @@ SPEC REPOS:
   trunk:
     - Alamofire
     - FLEX
-    - lottie-ios
+    - ReSwift
+    - ReSwiftThunk
     - RxCocoa
     - RxRelay
     - RxSwift
@@ -47,7 +54,8 @@ SPEC REPOS:
 SPEC CHECKSUMS:
   Alamofire: d368e1ff8a298e6dde360e35a3e68e6c610e7204
   FLEX: bdc9ac7d4a239e3d04c298c01221203257d63a80
-  lottie-ios: 9ae750cdc7820fecbd3c2f0cfc493038208fcdc4
+  ReSwift: eab3c01e4279ba81b54a61e4fd6499634d20123a
+  ReSwiftThunk: 7ca5145764be6f30b62db88a52d170133954629e
   RxCocoa: 94f817b71c07517321eb4f9ad299112ca8af743b
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
@@ -56,6 +64,6 @@ SPEC CHECKSUMS:
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Swinject: b4a11b31992e8668308dc594ba1cb9b3164a37ab
 
-PODFILE CHECKSUM: 7b0f40935137b0b3b4a708ec19bdc825a5ce9612
+PODFILE CHECKSUM: 32ab8fdcf089972302128e7c874f9003138d2380
 
 COCOAPODS: 1.11.3

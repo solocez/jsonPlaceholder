@@ -32,10 +32,10 @@ private extension ApplicationCoordinator {
         let vm = FirstScreenViewModel()
         vm.modelResult
             .asObservable()
-            .subscribe(onNext: { modelResult in
+            .subscribe(onNext: { [unowned self] modelResult in
                 switch modelResult {
-                case .success(_):
-                    log.debug("")
+                case .success(let fetchedEntities):
+                    self.openSecondScreen(lowerBound: fetchedEntities.0, upperBound: fetchedEntities.1, comments: fetchedEntities.2)
                 case .failure(_):
                     log.debug("")
                 }
@@ -46,9 +46,14 @@ private extension ApplicationCoordinator {
         let firstScreen = ScreenFactory().createFirstScreen(viewModel: vm)
         router.setRootModule(firstScreen)
     }
-    
+
+    func openSecondScreen(lowerBound: Int, upperBound: Int, comments: [CommentEntity]) {
+        let vm = SecondScreenViewModel(lowerBound: lowerBound, upperBound: upperBound, comments: comments)
+        let secondScreen = ScreenFactory().createSecondScreen(viewModel: vm)
+        router.push(secondScreen)
+    }
+
     static func createRouterForHorizontalFlows() -> Router {
-        let navigationController = NavigationController()
-        return CoordinatorFactory().router(navigationController)
+        CoordinatorFactory().router(UINavigationController(rootViewController: UIViewController()))
     }
 }

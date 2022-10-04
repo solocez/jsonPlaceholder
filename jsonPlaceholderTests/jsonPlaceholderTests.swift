@@ -86,7 +86,7 @@ final class jsonPlaceholderTests: XCTestCase {
             .subscribe(onNext: { modelResult  in
                 switch modelResult {
                 case .success(let entities):
-                    XCTAssert(entities.count == 10)
+                    XCTAssert(entities.2.count == 10)
                     endpointExp.fulfill()
                 case .failure(let error):
                     XCTFail("\(error)")

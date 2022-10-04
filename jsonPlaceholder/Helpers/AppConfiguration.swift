@@ -5,6 +5,9 @@ enum Constants {
         static let prod = "https://jsonplaceholder.typicode.com/"
         static let preprod = "https://jsonplaceholder.typicode.com/"
     }
+
+    static let maximumComments =  500
+    static let intervalToWaitBeforeResult = 3
 }
 
 

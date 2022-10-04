@@ -1,13 +1,9 @@
 import RxCocoa
 import RxSwift
-import RxSwiftExt
 
 final class SecondScreenController: RxViewController {
 
-    @IBOutlet private weak var lowerBoundTxtFld: UITextField!
-    @IBOutlet private weak var upperBoundTxtFld: UITextField!
-
-    @IBOutlet private weak var continueBtn: UIButton!
+    @IBOutlet private weak var commentsTbl: UITableView!
     
     private let viewModel: SecondScreenViewModelInterface
 
@@ -20,62 +16,42 @@ final class SecondScreenController: RxViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
-    #warning("Localisation is required")
     override func setupViews() {
-        lowerBoundTxtFld.keyboardType = .numberPad
-        lowerBoundTxtFld.contentHorizontalAlignment = .center
-
-        upperBoundTxtFld.keyboardType = .numberPad
-        upperBoundTxtFld.contentHorizontalAlignment = .center
-
-        continueBtn.setTitle("Continue", for: .normal)
+        
     }
 
     override func setupRxBindings() {
         bindLoader(loadable: viewModel, onCancelled: {
             // TODO:
         })
-        bindBounds()
-        bindContinueBtn()
     }
 }
 
 private extension SecondScreenController {
-    func bindBounds() {
-        let lowerBoundObs = lowerBoundTxtFld.rx
-            .text
-            .map { text -> Int? in
-                guard let txt = text, let lowerBound = Int(txt) else { return nil }
-                return lowerBound
-            }
-
-        lowerBoundObs
-            .unwrap()
-            .bind(to: viewModel.lowerBound)
-            .disposed(by: bag)
-
-        let upperBoundObs = upperBoundTxtFld.rx
-            .text
-            .map { text -> Int? in
-                guard let txt = text, let upperBound = Int(txt) else { return nil }
-                return upperBound
-            }
-
-        upperBoundObs
-            .unwrap()
-            .bind(to: viewModel.upperBound)
-            .disposed(by: bag)
-
-        Observable.combineLatest(lowerBoundObs, upperBoundObs)
-            .map { lowerBound, upperBound in
-                guard let _ = lowerBound, let _ = upperBound else { return false }
-                return true
-            }
-            .bind(to: continueBtn.rx.isEnabled)
-            .disposed(by: bag)
+    func setupCommentsTable() {
+        let cells: [UITableViewCell.Type] = [
+            CommentCell.self
+        ]
+        cells.forEach(commentsTbl.register)
+        commentsTbl.rx.setDataSource(self).disposed(by: bag)
     }
+}
 
-    func bindContinueBtn() {
-        continueBtn.rx.tap.bind(to: viewModel.onContinue).disposed(by: bag)
+// MARK: - UITableViewDataSource
+extension SecondScreenController: UITableViewDataSource {
+    public func numberOfSections(in tableView: UITableView) -> Int {
+        1
+    }
+    
+    public func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        viewModel.commentsNumber
+    }
+    
+    public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.identifier, for: indexPath) as? CommentCell else {
+            return UITableViewCell()
+        }
+        cell.setup(with: viewModel.viewModelForComment(with: indexPath.row))
+        return cell
     }
 }
