@@ -30,6 +30,7 @@ class ErrorAction: Action {
 struct CommentsState: AppStateBase {
     var changeId: Int = 0
     var comments: [Int: CommentEntity] = [:]
+    var lastUpdateIdx: Int = -1
     var error: Error?
 }
 
@@ -80,6 +81,7 @@ extension CommentsState {
         case let action as FetchCommentAction:
             state.changeId += 1
             state.comments[action.commentId] = action.comment
+            state.lastUpdateIdx = action.commentId
         case let action as CommentErrorAction:
             state.changeId += 1
             state.error = action.error

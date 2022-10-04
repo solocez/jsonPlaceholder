@@ -15,7 +15,7 @@ protocol AppConfigurable {
     var host: String { get }
 }
 
-class AppConfiguration: AppConfigurable {
+final class AppConfiguration: AppConfigurable {
 
     static var shared = AppConfiguration(host: Constants.Host.preprod)
 

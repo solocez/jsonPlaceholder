@@ -21,6 +21,7 @@ PODS:
   - RxSwiftExt/RxCocoa (6.0.1):
     - RxCocoa (~> 6.0)
     - RxSwiftExt/Core
+  - SkeletonView (1.30.3)
   - SwiftyBeaver (1.9.6)
   - SwiftyJSON (5.0.1)
   - Swinject (2.8.2)
@@ -33,6 +34,7 @@ DEPENDENCIES:
   - RxCocoa
   - RxSwift
   - RxSwiftExt
+  - SkeletonView
   - SwiftyBeaver
   - SwiftyJSON
   - Swinject
@@ -47,6 +49,7 @@ SPEC REPOS:
     - RxRelay
     - RxSwift
     - RxSwiftExt
+    - SkeletonView
     - SwiftyBeaver
     - SwiftyJSON
     - Swinject
@@ -60,10 +63,11 @@ SPEC CHECKSUMS:
   RxRelay: 1de1523e604c72b6c68feadedd1af3b1b4d0ecbd
   RxSwift: 5710a9e6b17f3c3d6e40d6e559b9fa1e813b2ef8
   RxSwiftExt: d61c4b9b06e0a448041b1c659e0f1b5c5a035afc
+  SkeletonView: f5b099c708e42a278079a12bcaaf71c303be65a3
   SwiftyBeaver: c8241b4745aa269a78ca5a022532c6915e948536
   SwiftyJSON: 2f33a42c6fbc52764d96f13368585094bfd8aa5e
   Swinject: b4a11b31992e8668308dc594ba1cb9b3164a37ab
 
-PODFILE CHECKSUM: 32ab8fdcf089972302128e7c874f9003138d2380
+PODFILE CHECKSUM: 8f5f1d9009c2687b6c08bd33e024db40a0658c71
 
 COCOAPODS: 1.11.3

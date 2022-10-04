@@ -13,6 +13,7 @@ def commonPods
   pod 'RxSwift'
   pod 'RxSwiftExt'
   pod 'FLEX'
+  pod 'SkeletonView'
 
   pod 'ReSwift'
   pod 'ReSwiftThunk'

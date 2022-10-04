@@ -16,24 +16,39 @@ final class SecondScreenController: RxViewController {
         fatalError("init(coder:) has not been implemented")
     }
 
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        commentsTbl.scrollToRow(at: IndexPath(row: viewModel.lowerBound, section: 0), at: .bottom, animated: false)
+    }
+
     override func setupViews() {
-        
+        setupCommentsTable()
     }
 
     override func setupRxBindings() {
         bindLoader(loadable: viewModel, onCancelled: {
             // TODO:
         })
+        viewModel.freshDataArrived
+            .subscribe(onNext: { [unowned self] freshState in
+                guard let visibleCells = self.commentsTbl.indexPathsForVisibleRows?.compactMap({ $0 }) else {
+                    return
+                }
+                let cellsToReload = visibleCells.filter { freshState.comments[$0.row] != nil }
+                self.commentsTbl.reloadRows(at: cellsToReload, with: .automatic)
+            })
+            .disposed(by: bag)
     }
 }
 
 private extension SecondScreenController {
     func setupCommentsTable() {
+        commentsTbl.dataSource = self
         let cells: [UITableViewCell.Type] = [
-            CommentCell.self
+            CommentCell.self,
+            LoadingCell.self
         ]
         cells.forEach(commentsTbl.register)
-        commentsTbl.rx.setDataSource(self).disposed(by: bag)
     }
 }
 
@@ -48,10 +63,18 @@ extension SecondScreenController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.identifier, for: indexPath) as? CommentCell else {
+        if let entity = viewModel.entityFor(index: indexPath.row) {
+            guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.identifier, for: indexPath) as? CommentCell else {
+                return UITableViewCell()
+            }
+            cell.setup(with: CommentCellViewModel(entity: entity))
+            return cell
+        }
+
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: LoadingCell.identifier, for: indexPath) as? LoadingCell else {
             return UITableViewCell()
         }
-        cell.setup(with: viewModel.viewModelForComment(with: indexPath.row))
+        cell.setup(with: LoadingCellViewModel())
         return cell
     }
 }

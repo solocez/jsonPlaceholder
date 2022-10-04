@@ -3,8 +3,12 @@ import RxSwift
 
 final class CommentCell: RxTableViewCell {
     
-    private var viewModel: CommentCellViewModelInterface!
+    @IBOutlet private weak var nameLbl: UILabel!
+    @IBOutlet private weak var emailLbl: UILabel!
+    @IBOutlet private weak var bodyLbl: UILabel!
     
+    private var viewModel: CommentCellViewModelInterface!
+
     func setup(with viewModel: CommentCellViewModelInterface) {
         self.viewModel = viewModel
         setupViews()
@@ -12,9 +16,11 @@ final class CommentCell: RxTableViewCell {
     }
 }
 
-extension CommentCell {
+private extension CommentCell {
     func setupViews() {
-
+        nameLbl.text = viewModel.entity.name
+        emailLbl.text = viewModel.entity.email
+        bodyLbl.text = viewModel.entity.body
     }
 
     func setupRxBindings() {

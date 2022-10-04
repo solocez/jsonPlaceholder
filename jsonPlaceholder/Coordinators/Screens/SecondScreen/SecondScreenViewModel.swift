@@ -3,36 +3,46 @@ import RxSwift
 
 protocol SecondScreenViewModelInterface: Loadable {
     // In
-    var lowerBound: PublishRelay<Int> { get }
-    var upperBound: PublishRelay<Int> { get }
-    var onContinue: PublishSubject<Void> { get }
-
-    // Out
+    var lowerBound: Int { get }
+    var upperBound: Int { get }
     var commentsNumber: Int { get }
 
-    func viewModelForComment(with idx: Int) -> CommentCellViewModel
+    // Out
+    var freshDataArrived: PublishSubject<CommentsState> { get }
+
+    func entityFor(index idx: Int) -> CommentEntity?
 }
 
 final class SecondScreenViewModel: SecondScreenViewModelInterface {
-    var modelResult = PublishSubject<Result<Void, Error>>()
-
-    var lowerBound = PublishRelay<Int>()
-    var upperBound = PublishRelay<Int>()
-    var onContinue = PublishSubject<Void>()
+    var lowerBound: Int
+    var upperBound: Int
 
     var commentsNumber: Int {
         Constants.maximumComments
     }
+    var freshDataArrived = PublishSubject<CommentsState>()
 
     var isLoading = BehaviorRelay<Bool>(value: false)
     let bag = DisposeBag()
 
-    init(lowerBound: Int, upperBound: Int, comments: [CommentEntity]) {
-        
+    @Inject private var api: RestAPI
+    private var commentsStateSubscriber = StateSubscriber(statePicker: { $0.commentsState })
+
+    init(lowerBound: Int, upperBound: Int) {
+        self.lowerBound = lowerBound
+        self.upperBound = upperBound
+
+        commentsStateSubscriber
+            .state
+            .bind(to: freshDataArrived)
+            .disposed(by: bag)
     }
 
-    func viewModelForComment(with idx: Int) -> CommentCellViewModel {
-        
-        return CommentCellViewModel()
+    func entityFor(index idx: Int) -> CommentEntity? {
+        if let entity = StateManager.shared.store.state.commentsState.comments[idx] {
+            return entity
+        }
+        StateManager.shared.store.dispatch(CommentsState.fetchComment(commentId: idx, restApi: api, bag: bag))
+        return nil
     }
 }

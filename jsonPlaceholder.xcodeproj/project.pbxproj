@@ -22,6 +22,9 @@
 		123A0F0228E6EFA100A506C4 /* jsonStateTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A0F0128E6EFA100A506C4 /* jsonStateTests.swift */; };
 		123A0F0A28E6F1C200A506C4 /* BlockSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A0F0828E6F1C200A506C4 /* BlockSubscriber.swift */; };
 		123A0F0B28E6F1C200A506C4 /* StateSubscriber.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A0F0928E6F1C200A506C4 /* StateSubscriber.swift */; };
+		123A0F1028ECA20A00A506C4 /* LoadingCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A0F0D28ECA20A00A506C4 /* LoadingCellViewModel.swift */; };
+		123A0F1128ECA20A00A506C4 /* LoadingCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 123A0F0E28ECA20A00A506C4 /* LoadingCell.xib */; };
+		123A0F1228ECA20A00A506C4 /* LoadingCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123A0F0F28ECA20A00A506C4 /* LoadingCell.swift */; };
 		123AD4CE28DC680F0054BCC1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4CD28DC680F0054BCC1 /* AppDelegate.swift */; };
 		123AD4D028DC680F0054BCC1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4CF28DC680F0054BCC1 /* SceneDelegate.swift */; };
 		123AD4D228DC680F0054BCC1 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 123AD4D128DC680F0054BCC1 /* ViewController.swift */; };
@@ -102,6 +105,9 @@
 		123A0F0128E6EFA100A506C4 /* jsonStateTests.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = jsonStateTests.swift; sourceTree = "<group>"; };
 		123A0F0828E6F1C200A506C4 /* BlockSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BlockSubscriber.swift; sourceTree = "<group>"; };
 		123A0F0928E6F1C200A506C4 /* StateSubscriber.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = StateSubscriber.swift; sourceTree = "<group>"; };
+		123A0F0D28ECA20A00A506C4 /* LoadingCellViewModel.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCellViewModel.swift; sourceTree = "<group>"; };
+		123A0F0E28ECA20A00A506C4 /* LoadingCell.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = LoadingCell.xib; sourceTree = "<group>"; };
+		123A0F0F28ECA20A00A506C4 /* LoadingCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoadingCell.swift; sourceTree = "<group>"; };
 		123AD4CA28DC680F0054BCC1 /* jsonPlaceholder.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = jsonPlaceholder.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		123AD4CD28DC680F0054BCC1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		123AD4CF28DC680F0054BCC1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -187,6 +193,7 @@
 		123A0EDB28E6230A00A506C4 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				123A0F0C28ECA20A00A506C4 /* LoadingCell */,
 				123A0EDC28E6230A00A506C4 /* CommentCell */,
 			);
 			path = Cells;
@@ -229,6 +236,16 @@
 				123A0F0928E6F1C200A506C4 /* StateSubscriber.swift */,
 			);
 			path = Helpers;
+			sourceTree = "<group>";
+		};
+		123A0F0C28ECA20A00A506C4 /* LoadingCell */ = {
+			isa = PBXGroup;
+			children = (
+				123A0F0D28ECA20A00A506C4 /* LoadingCellViewModel.swift */,
+				123A0F0E28ECA20A00A506C4 /* LoadingCell.xib */,
+				123A0F0F28ECA20A00A506C4 /* LoadingCell.swift */,
+			);
+			path = LoadingCell;
 			sourceTree = "<group>";
 		};
 		123AD4C128DC680F0054BCC1 = {
@@ -582,6 +599,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				123A0F1128ECA20A00A506C4 /* LoadingCell.xib in Resources */,
 				123AD4DA28DC68120054BCC1 /* LaunchScreen.storyboard in Resources */,
 				12AF1EE528DF302B00AB87C5 /* FirstScreenController.xib in Resources */,
 				123AD4D728DC68120054BCC1 /* Assets.xcassets in Resources */,
@@ -707,6 +725,7 @@
 				128290BF28E34617008DEA9A /* CommentEntity.swift in Sources */,
 				123A0ED628E6226A00A506C4 /* RxTableViewCell.swift in Sources */,
 				12DCF11828DC960500FB93FA /* AppAssembly.swift in Sources */,
+				123A0F1228ECA20A00A506C4 /* LoadingCell.swift in Sources */,
 				12AF1EE428DF302B00AB87C5 /* FirstScreenViewModel.swift in Sources */,
 				12DCF13128DC96B300FB93FA /* BundleExtension.swift in Sources */,
 				12DCF11728DC960500FB93FA /* AppComponent.swift in Sources */,
@@ -726,6 +745,7 @@
 				12DCF05028DC712700FB93FA /* UIViewController+Extensions.swift in Sources */,
 				128290C328E34CAC008DEA9A /* ViewModelBase.swift in Sources */,
 				12DCF11228DC923100FB93FA /* NibLoadingView.swift in Sources */,
+				123A0F1028ECA20A00A506C4 /* LoadingCellViewModel.swift in Sources */,
 				12DCF10528DC8AA300FB93FA /* ThemeColors.swift in Sources */,
 				123A0EE428E624C600A506C4 /* UITableView+Extensions.swift in Sources */,
 				123A0ED828E622B400A506C4 /* RxViewController.swift in Sources */,

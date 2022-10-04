@@ -2,18 +2,16 @@ import RxCocoa
 import RxSwift
 
 protocol FirstScreenViewModelInterface: Loadable {
-    // In
     var lowerBound: PublishRelay<Int> { get }
     var upperBound: PublishRelay<Int> { get }
+    var maxComments: BehaviorRelay<Int> { get }
+
     var onContinue: PublishSubject<Void> { get }
     var onCancel: PublishSubject<Void> { get }
-
-    // Out
-    var maxComments: BehaviorRelay<Int> { get }
 }
 
 final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
-    typealias ViewModelResultType = (Int/*lower bound*/, Int/*upper bound*/, [CommentEntity])
+    typealias ViewModelResultType = (Int/*lower bound*/, Int/*upper bound*/)
 
     var modelResult = PublishRelay<Result<ViewModelResultType, APIError>>()
 
@@ -31,6 +29,7 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
     private var bag = DisposeBag()
     private var bagForFetch = DisposeBag()
     @Inject private var api: RestAPI
+    private var isCancelled = false
 
     init() {
         lowerBound
@@ -51,14 +50,15 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
 
         let fetchedObs = onContinue
             .flatMap { [unowned self] in
-                self.fetchComments()
+                self.isCancelled = false
+                return self.fetchComments()
             }.share()
-            
+
         fetchedObs
             .map { _ in false }
             .bind(to: isLoading)
             .disposed(by: bag)
-        
+
         fetchedObs
             .map { Result<ViewModelResultType, APIError>.success($0) }
             .bind(to: modelResult)
@@ -67,6 +67,7 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
         onCancel
             .asObservable()
             .subscribe(onNext: { [unowned self] in
+                self.isCancelled = true
                 self.bagForFetch = DisposeBag()
             })
             .disposed(by: bag)
@@ -86,21 +87,11 @@ extension FirstScreenViewModel {
 
     func _fetchComments() -> Single<ViewModelResultType> {
         Single<ViewModelResultType>.create { [unowned self]  single in
-            var observables: [Observable<Data>] = []
             for idx in self.lower...self.upper {
-                let idxObs = self.api.execute(RestRequest(path: "comments/\(idx)", method: .get)).asObservable()
-                observables.append(idxObs)
+                if self.isCancelled { break }
+                StateManager.shared.store.dispatch(CommentsState.fetchComment(commentId: idx, restApi: self.api, bag: self.bagForFetch))
             }
-            Observable.combineLatest(observables)
-                .subscribe(onNext: { [unowned self] jsons in
-                    let entities = jsons
-                        .map { CommentFactory().dematerialiseComment(from: $0) }
-                        .compactMap { $0 }
-                    single(.success((self.lower, self.upper, entities)))
-                }, onError: { error in
-                    single(.failure(error))
-                })
-                .disposed(by: self.bagForFetch)
+            single(.success((self.lower, self.upper)))
             return Disposables.create()
         }
     }
