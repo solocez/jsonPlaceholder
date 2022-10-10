@@ -30,7 +30,6 @@ class ErrorAction: Action {
 struct CommentsState: AppStateBase {
     var changeId: Int = 0
     var comments: [Int: CommentEntity] = [:]
-    var lastUpdateIdx: Int = -1
     var error: Error?
 }
 
@@ -43,6 +42,10 @@ extension CommentsState: Equatable {
 
 // MARK: - Actions
 extension CommentsState {
+    struct FetchCommentInProgressAction: Action {
+        var commentId: Int
+    }
+
     struct FetchCommentAction: Action {
         var commentId: Int
         var comment: CommentEntity
@@ -52,6 +55,12 @@ extension CommentsState {
 
     static func fetchComment(commentId: Int, restApi: RestAPI, bag: DisposeBag) -> Thunk<AppState> {
         Thunk<AppState> { dispatch, _ in
+            if StateManager.shared.store.state.commentsState.comments[commentId]?.inProgress ?? false { return }
+
+            dispatch(FetchCommentInProgressAction(commentId: commentId))
+
+            log.debug("REQUESTING ENTITY FOR \(commentId)")
+
             restApi.execute(RestRequest(path: "comments/\(commentId)", method: .get))
                 .asObservable()
                 .asSingle()
@@ -81,7 +90,8 @@ extension CommentsState {
         case let action as FetchCommentAction:
             state.changeId += 1
             state.comments[action.commentId] = action.comment
-            state.lastUpdateIdx = action.commentId
+        case let action as FetchCommentInProgressAction:
+            state.comments[action.commentId] = CommentEntity.empty
         case let action as CommentErrorAction:
             state.changeId += 1
             state.error = action.error

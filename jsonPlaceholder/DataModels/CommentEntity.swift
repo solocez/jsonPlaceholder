@@ -1,6 +1,13 @@
 import SwiftyJSON
 
 struct CommentEntity: Identifiable, Hashable, Equatable {
+
+    static let empty = CommentEntity(postId: -1, id: -1, name: "", email: "", body: "")
+
+    var inProgress: Bool {
+        postId == -1 && id == -1 && name == "" && email == "" && body == ""
+    }
+
     let postId: Int
     let id: Int
     let name: String

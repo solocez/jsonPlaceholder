@@ -18,7 +18,7 @@ final class SecondScreenController: RxViewController {
 
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
-        commentsTbl.scrollToRow(at: IndexPath(row: viewModel.lowerBound, section: 0), at: .bottom, animated: false)
+        commentsTbl.scrollToRow(at: IndexPath(row: viewModel.lowerBound, section: 0), at: .top, animated: false)
     }
 
     override func setupViews() {
@@ -34,7 +34,7 @@ final class SecondScreenController: RxViewController {
                 guard let visibleCells = self.commentsTbl.indexPathsForVisibleRows?.compactMap({ $0 }) else {
                     return
                 }
-                let cellsToReload = visibleCells.filter { freshState.comments[$0.row] != nil }
+                let cellsToReload = visibleCells.filter { freshState.comments[SecondScreenController.map(ui: $0.row)] != nil }
                 self.commentsTbl.reloadRows(at: cellsToReload, with: .automatic)
             })
             .disposed(by: bag)
@@ -42,6 +42,10 @@ final class SecondScreenController: RxViewController {
 }
 
 private extension SecondScreenController {
+    static func map(ui idx: Int) -> Int {
+        idx + 1
+    }
+
     func setupCommentsTable() {
         commentsTbl.dataSource = self
         let cells: [UITableViewCell.Type] = [
@@ -63,7 +67,7 @@ extension SecondScreenController: UITableViewDataSource {
     }
     
     public func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if let entity = viewModel.entityFor(index: indexPath.row) {
+        if let entity = viewModel.entityFor(index: SecondScreenController.map(ui: indexPath.row)) {
             guard let cell = tableView.dequeueReusableCell(withIdentifier: CommentCell.identifier, for: indexPath) as? CommentCell else {
                 return UITableViewCell()
             }

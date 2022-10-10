@@ -9,7 +9,7 @@ let mainStore = Store<AppState>(
     middleware: [thunkMiddleware]
 )
 
-class StateManager {
+final class StateManager {
     static let shared = StateManager()
     var store: Store<AppState> {
         mainStore
