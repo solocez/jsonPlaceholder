@@ -1,7 +1,7 @@
 import RxCocoa
 import RxSwift
 
-final class SpinnerTapRecognizer: UITapGestureRecognizer {
+final fileprivate class SpinnerTapRecognizer: UITapGestureRecognizer {
     var onTapped: (()->Void)? = nil
 }
 
@@ -37,7 +37,7 @@ extension UIViewController {
         spinner.view.addGestureRecognizer(tapRecognizer)
     }
 
-    @objc func didTapView(_ sender: SpinnerTapRecognizer) {
+    @objc fileprivate func didTapView(_ sender: SpinnerTapRecognizer) {
         hideLoader()
         sender.onTapped?()
     }

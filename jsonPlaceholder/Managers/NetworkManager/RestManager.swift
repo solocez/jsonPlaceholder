@@ -11,7 +11,7 @@ protocol RestAPI {
     func execute(_ request: RestRequest) -> Single<Data>
 }
 
-class RestManager: RestAPI {
+final class RestManager: RestAPI {
     init() {}
 
     func execute(_ request: RestRequest) -> Single<Data> {

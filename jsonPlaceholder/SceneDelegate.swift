@@ -10,6 +10,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
         guard let windowsScene = (scene as? UIWindowScene) else { return }
 
+        Logger.shared.setupSwiftyBeaver()
+
         let window = UIWindow(windowScene: windowsScene)
         self.window = window
         window.makeKeyAndVisible()

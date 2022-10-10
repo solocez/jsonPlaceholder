@@ -12,12 +12,6 @@ protocol AppStateBase {
     var error: Error? { get set }
 }
 
-extension AppStateBase {
-    var isFresh: Bool {
-        changeId == 0 && error == nil
-    }
-}
-
 class ErrorAction: Action {
     var error: Error
     

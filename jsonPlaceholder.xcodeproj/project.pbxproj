@@ -51,8 +51,6 @@
 		12DCEFE428DC705200FB93FA /* Loadable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFDA28DC705200FB93FA /* Loadable.swift */; };
 		12DCF05028DC712700FB93FA /* UIViewController+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCEFED28DC712700FB93FA /* UIViewController+Extensions.swift */; };
 		12DCF0AE28DC72AD00FB93FA /* Logger.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0AD28DC72AD00FB93FA /* Logger.swift */; };
-		12DCF0BB28DC782900FB93FA /* UIViewExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */; };
-		12DCF0ED28DC879B00FB93FA /* GhostButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0E728DC879B00FB93FA /* GhostButton.swift */; };
 		12DCF0F628DC8A2000FB93FA /* UIColor+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0F528DC8A2000FB93FA /* UIColor+Extensions.swift */; };
 		12DCF10528DC8AA300FB93FA /* ThemeColors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF0F828DC8AA300FB93FA /* ThemeColors.swift */; };
 		12DCF11228DC923100FB93FA /* NibLoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 12DCF11128DC923100FB93FA /* NibLoadingView.swift */; };
@@ -137,8 +135,6 @@
 		12DCEFDA28DC705200FB93FA /* Loadable.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Loadable.swift; sourceTree = "<group>"; };
 		12DCEFED28DC712700FB93FA /* UIViewController+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Extensions.swift"; sourceTree = "<group>"; };
 		12DCF0AD28DC72AD00FB93FA /* Logger.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Logger.swift; sourceTree = "<group>"; };
-		12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = UIViewExtension.swift; sourceTree = "<group>"; };
-		12DCF0E728DC879B00FB93FA /* GhostButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = GhostButton.swift; sourceTree = "<group>"; };
 		12DCF0F528DC8A2000FB93FA /* UIColor+Extensions.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIColor+Extensions.swift"; sourceTree = "<group>"; };
 		12DCF0F828DC8AA300FB93FA /* ThemeColors.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ThemeColors.swift; sourceTree = "<group>"; };
 		12DCF11128DC923100FB93FA /* NibLoadingView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = NibLoadingView.swift; sourceTree = "<group>"; };
@@ -396,7 +392,6 @@
 				12DCF13C28DCA73B00FB93FA /* NSObject+Extensions.swift */,
 				12DCF13028DC96B300FB93FA /* BundleExtension.swift */,
 				12DCF0F528DC8A2000FB93FA /* UIColor+Extensions.swift */,
-				12DCF0BA28DC782900FB93FA /* UIViewExtension.swift */,
 				12DCEFED28DC712700FB93FA /* UIViewController+Extensions.swift */,
 			);
 			path = Extensions;
@@ -428,7 +423,6 @@
 				123A0ED528E6226A00A506C4 /* RxTableViewCell.swift */,
 				123A0ED328E5C2D300A506C4 /* SpinnerViewController.swift */,
 				12DCF11128DC923100FB93FA /* NibLoadingView.swift */,
-				12DCF0E728DC879B00FB93FA /* GhostButton.swift */,
 			);
 			path = UIControls;
 			sourceTree = "<group>";
@@ -748,12 +742,10 @@
 				123A0EE628E6251300A506C4 /* UITableViewCell+Extensions.swift in Sources */,
 				12DCEFCF28DC6FF800FB93FA /* RouterImp.swift in Sources */,
 				123A0EF528E6319E00A506C4 /* AppReducer.swift in Sources */,
-				12DCF0ED28DC879B00FB93FA /* GhostButton.swift in Sources */,
 				123A0EF428E6319E00A506C4 /* StateManager.swift in Sources */,
 				12DCF13428DC96EE00FB93FA /* AppConfiguration.swift in Sources */,
 				128290B828E2D798008DEA9A /* SecondScreenController.swift in Sources */,
 				12DCF0AE28DC72AD00FB93FA /* Logger.swift in Sources */,
-				12DCF0BB28DC782900FB93FA /* UIViewExtension.swift in Sources */,
 				123AD4D028DC680F0054BCC1 /* SceneDelegate.swift in Sources */,
 				12DCF13828DCA4F100FB93FA /* CoordinatorFactory.swift in Sources */,
 				128290BA28E2D798008DEA9A /* SecondScreenViewModel.swift in Sources */,

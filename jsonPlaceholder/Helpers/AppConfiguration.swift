@@ -21,7 +21,7 @@ final class AppConfiguration: AppConfigurable {
 
     let host: String
 
-    init(host: String) {
+    private init(host: String) {
         self.host = host
     }
 }
