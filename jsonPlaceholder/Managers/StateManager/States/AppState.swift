@@ -1,5 +1,5 @@
 import ReSwift
 
-struct AppState: StateType {
+struct AppState {
     var commentsState = CommentsState()
 }

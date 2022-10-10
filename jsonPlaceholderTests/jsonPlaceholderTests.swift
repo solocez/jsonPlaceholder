@@ -85,7 +85,7 @@ final class jsonPlaceholderTests: XCTestCase {
         vm.modelResult
             .subscribe(onNext: { modelResult  in
                 switch modelResult {
-                case .success(let entities):
+                case .success(_):
                     XCTAssertTrue( true )
                     endpointExp.fulfill()
                 case .failure(let error):
