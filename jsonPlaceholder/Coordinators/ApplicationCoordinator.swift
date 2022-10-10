@@ -36,8 +36,12 @@ private extension ApplicationCoordinator {
                 switch modelResult {
                 case .success(let fetchedEntities):
                     self.openSecondScreen(lowerBound: fetchedEntities.0, upperBound: fetchedEntities.1)
-                case .failure(_):
-                    log.debug("")
+                case .failure(let error):
+                    if error.isCancellation {
+                        log.debug("OPERATION CANCELLED")
+                    } else {
+                        log.error(error)
+                    }
                 }
             }, onError: { error in
                 

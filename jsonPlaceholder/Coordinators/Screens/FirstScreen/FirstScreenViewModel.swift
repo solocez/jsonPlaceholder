@@ -60,7 +60,9 @@ final class FirstScreenViewModel: FirstScreenViewModelInterface, ViewModelBase {
             .disposed(by: bag)
 
         fetchedObs
-            .map { Result<ViewModelResultType, APIError>.success($0) }
+            .map { [unowned self] in self.isCancelled
+                ? Result<ViewModelResultType, APIError>.failure(APIError(type: .cancelled))
+                : Result<ViewModelResultType, APIError>.success($0) }
             .bind(to: modelResult)
             .disposed(by: bag)
 

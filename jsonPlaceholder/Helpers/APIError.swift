@@ -9,6 +9,13 @@ enum JsonKey {
     static let content = "content"
 }
 
+enum APIErrorType {
+    case cancelled
+    case alamofireError
+    case internalError
+    case unknown
+}
+
 protocol APIErrorData {
     var code: Int { get }
     var message: String { get }
@@ -18,6 +25,7 @@ protocol APIErrorData {
 
 final class APIError: LocalizedError, CustomDebugStringConvertible {
 
+    var type: APIErrorType = .unknown
     var code: Int = -1
     var message: String = ""
     var payload = [String: Any]()
@@ -26,11 +34,20 @@ final class APIError: LocalizedError, CustomDebugStringConvertible {
         "\(JsonKey.type): \(JsonKey.code): \(code)\n\(JsonKey.message): \(message)"
     }
 
+    var isCancellation: Bool {
+        type == .cancelled
+    }
+
+    init(type: APIErrorType) {
+        self.type = type
+    }
+
     init(error: Error) {
         handleError(error)
     }
 
     init(with message: String) {
+        self.type = .internalError
         self.code = 1
         self.message = message
     }
@@ -50,6 +67,7 @@ final class APIError: LocalizedError, CustomDebugStringConvertible {
             })
         }
 
+        self.type = .internalError
         self.code = code
         self.message = message + (errorMessages.isEmpty ? "" : ("\n" + errorMessages.joined(separator: "; ")))
         self.payload = json.dictionaryValue
@@ -67,6 +85,7 @@ private extension APIError {
     }
 
     func handleAFError(with afError: AFError) {
+        type = .alamofireError
         code = afError.responseCode ?? -1
         message = afError.errorDescription ?? afError.localizedDescription
     }

@@ -39,10 +39,12 @@ final class SecondScreenViewModel: SecondScreenViewModelInterface {
     }
 
     func entityFor(index idx: Int) -> CommentEntity? {
-        if let entity = StateManager.shared.store.state.commentsState.comments[idx] {
+        let mappedIdx = idx + 1
+        if let entity = StateManager.shared.store.state.commentsState.comments[mappedIdx] {
             return entity
         }
-        StateManager.shared.store.dispatch(CommentsState.fetchComment(commentId: idx, restApi: api, bag: bag))
+        log.debug("REQUESTING ENTITY FOR \(mappedIdx)")
+        StateManager.shared.store.dispatch(CommentsState.fetchComment(commentId: mappedIdx, restApi: api, bag: bag))
         return nil
     }
 }
