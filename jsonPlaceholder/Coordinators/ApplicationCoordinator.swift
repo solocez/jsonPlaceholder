@@ -44,7 +44,7 @@ private extension ApplicationCoordinator {
                     }
                 }
             }, onError: { error in
-                
+                log.error(error)
             })
             .disposed(by: bag)
         let firstScreen = ScreenFactory().createFirstScreen(viewModel: vm)

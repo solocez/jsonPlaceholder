@@ -1,7 +1,7 @@
 import UIKit
 
 final class CoordinatorFactory {
-    public init() {}
+    init() {}
 
     #warning("Worth to hide using Type Erasuere")
     func  applicationCoordinator(window: UIWindow) -> RxBaseCoordinator<Void> {
